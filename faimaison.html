@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>FAImaison - CloudFrancois</title>
+    <meta name="description" content="">
+    <style>
+      /* Responsive video */
+      video { 
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* faimaison style */
+      body {
+        background: #37455b;
+        color: #cedbf0;
+      }
+      h1, a {
+        color: #b4d931;
+      }
+      video {
+        border: 1px solid #485a74;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>FAImaison</h1>
+    <video id="video"controls loop autoplay width="640" 
+      data-debug="true"
+      data-playlist="http://live.cloudfrancois.fr/playlist/faimaison">
+    </video>
+    <p>
+    <button id="video-next-source">Next source</button>
+    <button id="video-randomize-source">Random source</button>
+    </p>
+
+    <p>
+    <strong>Playlist&nbsp;:</strong> <a href="http://live.cloudfrancois.fr/playlist/faimaison">http://live.cloudfrancois.fr/playlist/faimaison</a></li>
+    </p>
+
+    <script src="icecastVideoPlayer.js"></script>
+    <script>
+
+      /**
+       * Buttons
+       */
+      var buttonNextSource = document.querySelector('#video-next-source');
+      var buttonRandomizeSource = document.querySelector('#video-randomize-source');
+      buttonNextSource.addEventListener('click', function(){ v.nextSource(); })
+      buttonRandomizeSource.addEventListener('click', function(){ v.randomizeSource(); })
+
+    </script>
+  </body>
+</html>
