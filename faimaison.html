@@ -27,10 +27,8 @@
   <body>
 
     <h1>FAImaison</h1>
-    <video id="video"controls loop autoplay width="640" 
-      data-debug="true"
-      data-playlist="http://live.cloudfrancois.fr/playlist/faimaison">
-    </video>
+    <video id="video"controls loop autoplay width="640" data-playlist="http://live.cloudfrancois.fr/playlist/faimaison"></video>
+
     <p>
     <button id="video-next-source">Next source</button>
     <button id="video-randomize-source">Random source</button>
@@ -40,7 +38,8 @@
     <strong>Playlist&nbsp;:</strong> <a href="http://live.cloudfrancois.fr/playlist/faimaison">http://live.cloudfrancois.fr/playlist/faimaison</a></li>
     </p>
 
-    <script src="icecastVideoPlayer.js"></script>
+    <script src="m3uStreamPlayer.js"></script>
+    <script>m3uStreamPlayer.init({selector: '#video', debug: true});</script>
     <script>
 
       /**
@@ -48,8 +47,8 @@
        */
       var buttonNextSource = document.querySelector('#video-next-source');
       var buttonRandomizeSource = document.querySelector('#video-randomize-source');
-      buttonNextSource.addEventListener('click', function(){ v.nextSource(); })
-      buttonRandomizeSource.addEventListener('click', function(){ v.randomizeSource(); })
+      buttonNextSource.addEventListener('click', function(){ m3uStreamPlayer.nextSource(document.querySelector('#video')); })
+      buttonRandomizeSource.addEventListener('click', function(){ v.randomizeSource(document.querySelector('#video')); })
 
     </script>
   </body>
