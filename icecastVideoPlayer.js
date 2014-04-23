@@ -34,7 +34,7 @@ v.getPlaylistSources = function() {
 
       // Immediatly load & play first source
       that.src = that.sources[0];
-      that.play();
+      if (that.getAttribute('autoplay')) that.play();
     }
   }        
 }
