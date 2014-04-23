@@ -12,7 +12,7 @@ var v = document.querySelector("#video");
 
 v.init = function() {
   this.sources = [];
-  this.debug = v.getAttribute('data-debug') || false;
+  this.debug = (v.getAttribute('data-debug') == "true") ? true : false;
   this.getPlaylistSources();
 }
 
