@@ -30,7 +30,24 @@
         // Play first source
         if (elem.getAttribute('autoplay')) elem.play();
       }
-    }    
+    }
+  }
+
+  // Load playlist, and get sources.
+  var _refreshSource = function(elem) {
+    // XHR Request to playlist file
+    elem.sources = [];
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = process;
+    xhr.open("GET", elem.getAttribute('data-playlist'), true);
+    xhr.send();
+    function process() {
+      if (xhr.readyState == 4) {
+        // m3uToUrl From https://github.com/aitorciki/jquery-playlist/blob/master/jquery.playlist.js
+        elem.sources = xhr.responseText.match(/^(?!#)(?!\s).*$/mg).filter(function(element){return (element);});
+        if (exports.debug) console.log("Sources: "+elem.sources);
+      }
+    }
   }
 
   // Get current source index
@@ -113,6 +130,10 @@
     _randomizeSource(elem);
   }
 
+  exports.refreshSource = function(elem) {
+    _refreshSource(elem);
+  }
+
   exports.init = function (obj) {
     // Allow string to be passed as argument.
     if (typeof obj === "string") obj = {selector: obj}
@@ -140,4 +161,3 @@
 
   return exports;
 });
-
